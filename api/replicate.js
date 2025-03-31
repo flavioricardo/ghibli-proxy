@@ -2,27 +2,19 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 module.exports = async (req, res) => {
-  const allowedOrigins = ["https://flavioricardo.github.io"];
-  const origin = req.headers.origin;
-
-  // Configuração de CORS
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  } else {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-  }
-
-  res.setHeader("Access-Control-Allow-Credentials", true);
+  // Headers CORS aplicados para todas as requisições
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://flavioricardo.github.io"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,OPTIONS,PATCH,DELETE,POST,PUT"
   );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Resposta para requisições OPTIONS
+  // Resposta para requisição preflight (OPTIONS)
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
@@ -32,14 +24,12 @@ module.exports = async (req, res) => {
     return res.status(405).send("Método não permitido");
   }
 
-  // Token da API Replicate
   const replicateApiToken = process.env.REPLICATE_API_TOKEN;
   if (!replicateApiToken) {
     return res.status(500).send("Token da API Replicate não configurado");
   }
 
   try {
-    // Requisição para a API da Replicate
     const replicateRes = await fetch(
       "https://api.replicate.com/v1/predictions",
       {
@@ -54,7 +44,6 @@ module.exports = async (req, res) => {
 
     const data = await replicateRes.json();
 
-    // Verifica se a resposta da API contém erro
     if (!replicateRes.ok) {
       return res.status(replicateRes.status).json({
         error: data.error || "Erro ao processar a requisição na API Replicate",
