@@ -2,24 +2,22 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 module.exports = async (req, res) => {
-  // Headers CORS aplicados para todas as requisições
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://flavioricardo.github.io"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", "true");
+  const origin = req.headers.origin || "*";
+
+  res.setHeader("Access-Control-Allow-Origin", origin);
+  res.setHeader("Vary", "Origin");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,OPTIONS,PATCH,DELETE,POST,PUT"
   );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
 
-  // Resposta para requisição preflight (OPTIONS)
+  // Trata requisição OPTIONS (preflight)
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
-  // Verificação do método HTTP
   if (req.method !== "POST") {
     return res.status(405).send("Método não permitido");
   }
