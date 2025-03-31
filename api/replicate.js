@@ -1,5 +1,4 @@
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = require("node-fetch");
 
 module.exports = async (req, res) => {
   const allowedOrigins = ["https://flavioricardo.github.io"];
