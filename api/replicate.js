@@ -2,12 +2,15 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 module.exports = async (req, res) => {
-  // Libera CORS
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const allowedOrigins = ["https://flavioricardo.github.io"];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Trata requisições OPTIONS (preflight)
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
