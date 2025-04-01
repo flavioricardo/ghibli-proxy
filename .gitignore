@@ -31,3 +31,4 @@ Thumbs.db
 
 # Arquivos de deploy
 .vercel/
+.vercel

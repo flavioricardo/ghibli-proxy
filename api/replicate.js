@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   } else {
-    res.setHeader("Access-Control-Allow-Origin", "*"); // (ou pode negar)
+    res.setHeader("Access-Control-Allow-Origin", "*");
   }
 
   res.setHeader("Access-Control-Allow-Credentials", true);
