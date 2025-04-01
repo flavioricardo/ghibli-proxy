@@ -1,23 +1,45 @@
-# Ghibli Proxy
+# 🌟 Ghibli Proxy
 
-Proxy para consumir e manipular dados da API do Studio Ghibli.
+A lightweight proxy to consume and manipulate data from the Studio Ghibli API, powered by a model from Replicate. Perfect for showcasing API handling and data transformation skills.
 
-## Instalação
+## 🚀 Features
 
-```bash
-git clone https://github.com/seu-usuario/ghibli-proxy.git
-cd ghibli-proxy
-npm install
-```
+- 🛠️ **Customizable Proxy**: Intercept and manipulate API responses.
+- ⚡ **Fast and Simple**: Easy to set up and use.
+- 📡 **Local Server**: Serve Studio Ghibli data locally for testing or development.
+- 🤖 **Powered by Replicate**: Leverages a model from Replicate for enhanced API functionality.
 
-## Uso
+## 📥 Installation
 
-Inicie o servidor com `npm start` e acesse em `http://localhost:3000`.
+1. Clone the repository and install dependencies:
 
-## Contribua
+   ```bash
+   git clone https://github.com/seu-usuario/ghibli-proxy.git
+   cd ghibli-proxy
+   npm install
+   ```
 
-Sinta-se à vontade para abrir issues ou enviar Pull Requests!
+2. Start the server:
 
-## Licença
+   ```bash
+   npm start
+   ```
 
-Licenciado sob a [MIT License](LICENSE).
+3. Access the proxy at `http://localhost:3000`.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a Pull Request.
+
+## 📧 Contact
+
+- **Email**: flaviobazana@gmail.com
+- **LinkedIn**: [Flavio Ricardo](https://www.linkedin.com/in/flavioricardo/)
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Made with ❤️ by Flavio Ricardo.
